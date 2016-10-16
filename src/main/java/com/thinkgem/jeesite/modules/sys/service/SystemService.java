@@ -65,7 +65,6 @@ public class SystemService extends BaseService implements InitializingBean {
 		return sessionDao;
 	}
 
-	@Autowired
 	private IdentityService identityService;
 
 	//-- User Service --//
@@ -539,7 +538,18 @@ public class SystemService extends BaseService implements InitializingBean {
 			identityService.deleteUser(userId);
 		}
 	}
-	
+
 	///////////////// Synchronized to the Activiti end //////////////////
+	
+	public IdentityService getIdentityService() {
+		return identityService;
+	}
+
+	public void setIdentityService(IdentityService identityService) {
+		this.identityService = identityService;
+	}
+	
+	
+	
 	
 }
