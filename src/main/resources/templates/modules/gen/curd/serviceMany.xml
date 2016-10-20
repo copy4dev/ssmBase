@@ -60,9 +60,10 @@ public class ${ClassName}Service extends CrudService<${ClassName}Dao, ${ClassNam
 		super.save(${className});
 	<#list table.childList as c>
 		for (${c.className?cap_first} ${c.className?uncap_first} : ${className}.get${c.className?cap_first}List()){
-			if (${c.className?uncap_first}.getId() == null){
-				continue;
-			}
+			//一对多的时候需要注释?注意调试
+//			if (${c.className?uncap_first}.getId() == null){
+//				continue;
+//			}
 			if (${c.className?cap_first}.DEL_FLAG_NORMAL.equals(${c.className?uncap_first}.getDelFlag())){
 				if (StringUtils.isBlank(${c.className?uncap_first}.getId())){
 					<#if c.parentExists>
