@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.thinkgem.jeesite.common.web.BaseController;
 
 /**
- * 对奇门开放接口
+ * 开放接口
  * 
  * @author shi
  * @version 2016-08-22
@@ -22,8 +22,6 @@ import com.thinkgem.jeesite.common.web.BaseController;
 public class BmsService extends BaseController {
 
 	/**
-	 * 接收奇门确认通知接口
-	 * 
 	 * @param request
 	 * @param response
 	 * @return
@@ -31,8 +29,6 @@ public class BmsService extends BaseController {
 	@RequestMapping(value = "service")
 	public String service(HttpServletRequest request, HttpServletResponse response) {
 
-		// http://[erp_webservice_url]?method=[erp_API] &timestamp=[2015-02-01
-		// 00:00:00]&format=xml&app_key=[wms_appkey]&v=1.0&sign=[xxxxxxxxxxxxxxxxxxxxxx]&sign_method=md5&customerId=[QIMENUSR1]
 		try {
 
 			BufferedReader br = request.getReader();
@@ -41,38 +37,13 @@ public class BmsService extends BaseController {
 			while ((line = br.readLine()) != null) {
 				sb.append(line).append("\n");
 			}
-			String param = sb.toString();
-			System.out.println(param);
 
 			// 解析
 			String method = request.getParameter("method");
 			boolean flag = false;
 
 			// 入库单确认接口
-			if ("entryorder.confirm".equals(method))
-				flag = true;
-
-			// 销退入库单确认接口
-			if ("returnorder.confirm".equals(method)) {
-				System.out.println("销退入库的通告来啦");
-				flag = true;
-			}
-
-			// 盘点单接收接口
-			if ("inventory.report".equals(method)) {
-				flag = true;
-			}
-
-			// 出库单确认接口
-			if ("stockout.confirm".equals(method))
-				flag = true;
-
-			// 发货单确认接口
-			if ("deliveryorder.confirm".equals(method))
-				flag = true;
-
-			// 订单流水通知接口 仓内生产作业状态回传（“仓库接单”，“打印”，“拣货”，“复核”，“打包”）
-			if ("taobao.qimen.orderprocess.report".equals(method))
+			if ("1".equals(method))
 				flag = true;
 
 			// 响应
