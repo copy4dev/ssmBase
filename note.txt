@@ -8,6 +8,7 @@
 
 ##框架日志##
 #删减日志#
+log4j.logger.com.thinkgem.jeesite=INFO
 
 ##框架开放端口##
 #修改配置#
