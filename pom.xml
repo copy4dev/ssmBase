@@ -36,6 +36,7 @@
 		<commons-beanutils.version>1.9.1</commons-beanutils.version>
 		<jackson.version>2.2.3</jackson.version>
 		<fastjson.version>1.1.40</fastjson.version>
+		<json-lib.version>2.4</json-lib.version>
 		<xstream.version>1.4.7</xstream.version>
 		<guava.version>17.0</guava.version>
 		<dozer.version>5.5.1</dozer.version>
@@ -446,12 +447,19 @@
 			<version>${jackson.version}</version>
 		</dependency>
 		
-		<!-- fastjson json
-		<dependency>
+        <!-- fastjson json -->
+		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency> -->
+		
+		<!-- json-lib -->
+		<dependency>
+    		<groupId>net.sf.json-lib</groupId>
+    		<artifactId>json-lib</artifactId>
+    		<version>${json-lib.version}</version>
+		</dependency>
 		
 		<!-- xstream xml -->
 		<dependency>

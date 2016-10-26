@@ -2,31 +2,32 @@ package com.copy4dev.ssmbase.modules.interfaces;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONObject;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.copy4dev.ssmbase.common.web.BaseController;
+import com.copy4dev.ssmbase.modules.utils.Contants;
 
-/**
- * 对奇门开放接口
- * 
- * @author shi
- * @version 2016-08-22
- */
 @Controller
 public class DataService extends BaseController {
 
 	/**
-	 * 接收奇门确认通知接口
+	 * http://192.168.62.141:8180/ssmBase/data/service?test_key=123
 	 */
-	@RequestMapping(value = "${adminPath}/ssmbase/service", method = RequestMethod.POST)
+	@RequestMapping(value = "/data/service", method = RequestMethod.POST)
 	public String service(HttpServletRequest request, HttpServletResponse response) {
 
+		Map<String, String> resultMap = new HashMap<String, String>();
 		boolean flag = false;
 
 		try {
@@ -34,17 +35,19 @@ public class DataService extends BaseController {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 
-			// 校验
+			// 参数获取
 			String testKey = request.getParameter("test_key");
+			String method = request.getParameter("method");
 
-			if (testKey == null || !Contants.TEST_KET.equals(testKey)) {
-
-				System.out.println("KEY验证不通过");
-				response.getWriter().write(getResponseStr(flag));
+			// 参数校验
+			if (StringUtils.isBlank(testKey) || !Contants.TEST_KET.equals(testKey)) {
+				resultMap.put("falg", "failure");
+				resultMap.put("code", "");
+				resultMap.put("message", "参数验证不通过");
+				response.getWriter().write(getResponseXML(resultMap));
 			}
 
-			System.out.println("开始接收菜鸟发过来的通知");
-
+			// 获取请求主体
 			BufferedReader br = request.getReader();
 			StringBuilder sb = new StringBuilder();
 			String line = null;
@@ -53,45 +56,73 @@ public class DataService extends BaseController {
 			}
 			String param = sb.toString();
 
-			System.out.println("请求参数：");
-			System.out.println(param);
-
-			// 解析
-			String method = request.getParameter("method");
-			System.out.println(method);
-
-			// 入库单确认接口
-			if ("entryorder.confirm".equals(method))
+			// 测试接口
+			if ("test".equals(method)) {
+				//请求地址?查询字符串
+				System.out.println("请求地址：\n"+request.getRequestURL());
+				System.out.println("查询字符串：\n"+request.getQueryString());
+				System.out.println("请求主体：\n"+param);
 				flag = true;
+			}
 
 			// 响应
-			response.getWriter().write(getResponseStr(flag));
+			if (flag) {
+				resultMap.put("falg", "success");
+				resultMap.put("code", "");
+				resultMap.put("message", "");
+			} else {
+				resultMap.put("falg", "failure");
+				resultMap.put("code", "xxx");
+				resultMap.put("message", "error msg");
+			}
+			response.getWriter().write(getResponseJson(resultMap));// 响应
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 
 	/**
-	 * 响应内容
+	 * 响应内容:XML
 	 * 
-	 * @param flag
+	 * @param resultMap
 	 * @return
 	 */
-	public String getResponseStr(boolean flag) {
+	public String getResponseXML(Map<String, String> resultMap) {
 
 		StringBuffer rsp = new StringBuffer();
 		rsp.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 		rsp.append("<response>");
-		if (flag)
-			rsp.append("<flag>success</flag>"); // success|failure
-		else
-			rsp.append("<flag>failure</flag>");
-		rsp.append("<code></code>"); // 响应码
-		rsp.append("<message></message>"); // 响应信息
-		rsp.append("</response>");
 
+		// success|failure
+		rsp.append("<flag>");
+		rsp.append(resultMap.get("falg"));
+		rsp.append("</flag>");
+
+		// 响应码
+		rsp.append("<code>");
+		rsp.append(resultMap.get("code"));
+		rsp.append("</code>");
+
+		// 响应信息
+		rsp.append("<message>");
+		rsp.append(resultMap.get("message"));
+		rsp.append("</message>");
+
+		rsp.append("</response>");
 		return rsp.toString();
 	}
+
+	/**
+	 * 响应内容:Json
+	 * 
+	 * @param resultMap
+	 * @return
+	 */
+	public String getResponseJson(Map<String, String> resultMap) {
+		JSONObject json = JSONObject.fromObject(resultMap);
+		return json.toString();
+	}
+
 }

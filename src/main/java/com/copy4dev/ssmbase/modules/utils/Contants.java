@@ -1,4 +1,4 @@
-package com.copy4dev.ssmbase.modules.interfaces;
+package com.copy4dev.ssmbase.modules.utils;
 
 public class Contants {
 
