@@ -10,11 +10,8 @@ import java.net.URLEncoder;
 import java.util.Map;
 
 /**
- * Created by heng4fun on 15/3/19.
- */
-
-/**
- * 发送HTTP请求
+ * 发送HTTP请求<br/>
+ * 默认使用POST
  */
 public class HttpPostUtils {
 
@@ -25,7 +22,6 @@ public class HttpPostUtils {
 	 * @return 服务器返回结果字符串
 	 */
 	public static String excuteRequest(String targetURL, String requestMethod, Map<String, String> urlParameters) {
-//	   System.out.println("========推送到管易===========");
 
 		URL url;
 		String requestParamsStr = "";
@@ -45,9 +41,8 @@ public class HttpPostUtils {
 				}
 
 			}
-			// 去除最后的“&”连接符
+			// 去除最后的"&"连接符
 			requestParamsStr = requestParamsStr.substring(0, requestParamsStr.length() - 1);
-//           LOG.info("gy_request_code:\n" + targetURL + "?" + requestParamsStr);
 			connection.setRequestProperty("Content-Length", "" + Integer.toString(requestParamsStr.getBytes().length));
 
 			connection.setUseCaches(false);
@@ -73,12 +68,9 @@ public class HttpPostUtils {
 			return response.toString();
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			return null;
-
 		} finally {
-
 			if (connection != null) {
 				connection.disconnect();
 			}
@@ -93,7 +85,6 @@ public class HttpPostUtils {
 	 * @return 服务器返回结果字符串
 	 */
 	public static String excuteRequest(String targetURL, Map<String, String> urlParameters) {
-//	  System.out.println("========从管易获取===========");
 		URL url;
 		String requestParamsStr = "";
 		HttpURLConnection connection = null;
@@ -112,12 +103,9 @@ public class HttpPostUtils {
 				}
 
 			}
-			// 去除最后的“&”连接符
+			// 去除最后的"&"连接符
 			requestParamsStr = requestParamsStr.substring(0, requestParamsStr.length() - 1);
-//          requestParamsStr = "method=ecerp.trade.get&appkey=9F4C2B07E0334C9294B2F12924AE266C&condition=[{\"paramname\":\"fh\",\"paramvalue\":\"1\",\"paramcompair\":\"=\"};"
-//          		+ "{\"paramname\":\"shopcode\",\"paramvalue\":\"瓷肌－楚楚街\",\"paramcompair\":\"=\"};"
-//          		+ "{\"paramname\":\"djbh\",\"paramvalue\":\"DD35781471\",\"paramcompair\":\"=\"};]";
-			System.out.println(requestParamsStr);
+//			System.out.println(requestParamsStr);
 			connection.setRequestProperty("Content-Length", "" + Integer.toString(requestParamsStr.getBytes().length));
 
 			connection.setUseCaches(false);
@@ -143,12 +131,9 @@ public class HttpPostUtils {
 			return response.toString();
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			return null;
-
 		} finally {
-
 			if (connection != null) {
 				connection.disconnect();
 			}

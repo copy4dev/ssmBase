@@ -22,7 +22,7 @@ import com.copy4dev.ssmbase.modules.utils.Contants;
 public class DataService extends BaseController {
 
 	/**
-	 * http://192.168.62.141:8180/ssmBase/data/service?test_key=123
+	 * http://192.168.62.141:8180/ssmBase/data/service?test_key=123&method=test
 	 */
 	@RequestMapping(value = "/data/service", method = RequestMethod.POST)
 	public String service(HttpServletRequest request, HttpServletResponse response) {
@@ -41,9 +41,9 @@ public class DataService extends BaseController {
 
 			// 参数校验
 			if (StringUtils.isBlank(testKey) || !Contants.TEST_KET.equals(testKey)) {
-				resultMap.put("falg", "failure");
-				resultMap.put("code", "");
 				resultMap.put("message", "参数验证不通过");
+				resultMap.put("code", "");
+				resultMap.put("falg", "failure");
 				response.getWriter().write(getResponseXML(resultMap));
 			}
 
@@ -58,11 +58,12 @@ public class DataService extends BaseController {
 
 			// 测试接口
 			if ("test".equals(method)) {
-				//请求地址?查询字符串
-				System.out.println("请求地址：\n"+request.getRequestURL());
-				System.out.println("查询字符串：\n"+request.getQueryString());
-				System.out.println("请求主体：\n"+param);
+				// 请求地址?查询字符串
+				System.out.println("请求地址：" + request.getRequestURL());
+				System.out.println("查询字符串：" + request.getQueryString());
+				System.out.println("请求主体：" + param);
 				flag = true;
+				response.sendRedirect("../index.jsp");
 			}
 
 			// 响应

@@ -8,3 +8,4 @@
 <%@ taglib prefix="act" tagdir="/WEB-INF/tags/act" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}${fns:getAdminPath()}"/>
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
+<c:set var="ctxPage" value="${pageContext.request.contextPath}/page"/>
