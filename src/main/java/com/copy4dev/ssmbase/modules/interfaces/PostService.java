@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,19 +20,23 @@ import com.copy4dev.ssmbase.common.web.BaseController;
 import com.copy4dev.ssmbase.modules.utils.Contants;
 
 @Controller
-public class DataService extends BaseController {
+public class PostService extends BaseController {
+
+	private static Logger log = Logger.getLogger(PostService.class);
 
 	/**
-	 * http://192.168.62.141:8180/ssmBase/data/service?test_key=123&method=test
+	 * 开放接口：接收POST数据<br/>
+	 * ${adminPath}=/ssmBase/a<br>
+	 * eg:192.168.62.141:8080/ssmBase/a/service?test_key=123&method=test
 	 */
-	@RequestMapping(value = "/data/service", method = RequestMethod.POST)
+	@RequestMapping(value = "${adminPath}/service", method = RequestMethod.POST)
 	public String service(HttpServletRequest request, HttpServletResponse response) {
 
 		Map<String, String> resultMap = new HashMap<String, String>();
 		boolean flag = false;
 
 		try {
-
+			System.out.println("okokoko");
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 
@@ -59,11 +64,10 @@ public class DataService extends BaseController {
 			// 测试接口
 			if ("test".equals(method)) {
 				// 请求地址?查询字符串
-				System.out.println("请求地址：" + request.getRequestURL());
-				System.out.println("查询字符串：" + request.getQueryString());
-				System.out.println("请求主体：" + param);
+				log.debug("请求地址：" + request.getRequestURL());
+				log.debug("查询字符串：" + request.getQueryString());
+				log.debug("请求主体：" + param);
 				flag = true;
-				response.sendRedirect("../index.jsp");
 			}
 
 			// 响应
@@ -95,22 +99,15 @@ public class DataService extends BaseController {
 		StringBuffer rsp = new StringBuffer();
 		rsp.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 		rsp.append("<response>");
-
-		// success|failure
 		rsp.append("<flag>");
-		rsp.append(resultMap.get("falg"));
+		rsp.append(resultMap.get("falg"));// success|failure
 		rsp.append("</flag>");
-
-		// 响应码
 		rsp.append("<code>");
-		rsp.append(resultMap.get("code"));
+		rsp.append(resultMap.get("code"));// 响应码
 		rsp.append("</code>");
-
-		// 响应信息
 		rsp.append("<message>");
-		rsp.append(resultMap.get("message"));
+		rsp.append(resultMap.get("message"));// 响应信息
 		rsp.append("</message>");
-
 		rsp.append("</response>");
 		return rsp.toString();
 	}

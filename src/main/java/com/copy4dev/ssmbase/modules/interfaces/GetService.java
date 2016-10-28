@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,13 +17,17 @@ import com.copy4dev.ssmbase.common.web.BaseController;
 import com.copy4dev.ssmbase.modules.utils.Contants;
 
 @Controller
-public class PageService extends BaseController {
+public class GetService extends BaseController {
 
+	private static Logger logger = Logger.getLogger(GetService.class);
+
+	@Autowired
+//	private TtAccountService ttAccountService;
 	/**
-	 * http://192.168.62.141:8080/ssmBase/page/service?test_key=123&method=test
+	 * 192.168.62.141:8080/ssmBase/f/service?test_key=123&method=test
 	 */
-	@RequestMapping(value = "/page/service", method = RequestMethod.GET)
-	public String service(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "${frontPath}/service", method = RequestMethod.GET)
+	public String service(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		try {
 
@@ -39,9 +46,14 @@ public class PageService extends BaseController {
 			// 测试接口
 			if ("test".equals(method)) {
 				// 请求地址?查询字符串
-				System.out.println("请求地址：" + request.getRequestURL());
-				System.out.println("查询字符串：" + request.getQueryString());
-				response.sendRedirect("../WEB-INF/index.jsp");
+				logger.debug("请求地址：" + request.getRequestURL());
+				logger.debug("查询字符串：" + request.getQueryString());
+				// 页面跳转
+				// response.sendRedirect("/ssmBase/page/index.jsp");
+
+//				List<TtAccount> list=ttAccountService.findList(new TtAccount());
+//				JSONArray jsonArray=JSONArray.fromObject(list);
+//				System.out.println(jsonArray);
 			}
 
 		} catch (IOException e) {
