@@ -5,14 +5,14 @@ package com.copy4dev.ssmbase.modules.test.dao;
 
 import com.copy4dev.ssmbase.common.persistence.CrudDao;
 import com.copy4dev.ssmbase.common.persistence.annotation.MyBatisDao;
-import com.copy4dev.ssmbase.modules.test.entity.TestData;
+import com.copy4dev.ssmbase.modules.test.entity.TestDataChild;
 
 /**
- * 单表生成DAO接口
+ * 主子表生成DAO接口
  * @author copy4dev
  * @version 2016-11-03
  */
 @MyBatisDao
-public interface TestDataDao extends CrudDao<TestData> {
+public interface TestDataChildDao extends CrudDao<TestDataChild> {
 	
 }

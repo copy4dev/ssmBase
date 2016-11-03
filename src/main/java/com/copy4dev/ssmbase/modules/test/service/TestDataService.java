@@ -15,8 +15,8 @@ import com.copy4dev.ssmbase.modules.test.dao.TestDataDao;
 
 /**
  * 单表生成Service
- * @author ThinkGem
- * @version 2016-10-28
+ * @author copy4dev
+ * @version 2016-11-03
  */
 @Service
 @Transactional(readOnly = true)

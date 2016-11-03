@@ -24,8 +24,8 @@ import com.copy4dev.ssmbase.modules.test.service.TestDataService;
 
 /**
  * 单表生成Controller
- * @author ThinkGem
- * @version 2016-10-28
+ * @author copy4dev
+ * @version 2016-11-03
  */
 @Controller
 @RequestMapping(value = "${adminPath}/test/testData")
