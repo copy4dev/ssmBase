@@ -2,18 +2,32 @@
 Navicat MySQL Data Transfer
 
 Source Server         : MySQL
-Source Server Version : 50520
+Source Server Version : 50528
 Source Host           : localhost:3306
 Source Database       : db_ssmbase
 
 Target Server Type    : MYSQL
-Target Server Version : 50520
+Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2016-11-03 23:10:21
+Date: 2016-11-07 11:10:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for dual
+-- ----------------------------
+DROP TABLE IF EXISTS `dual`;
+CREATE TABLE `dual` (
+  `id` char(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='伪表';
+
+-- ----------------------------
+-- Records of dual
+-- ----------------------------
+INSERT INTO `dual` VALUES ('1');
 
 -- ----------------------------
 -- Table structure for gen_scheme
@@ -186,6 +200,27 @@ CREATE TABLE `gen_template` (
 
 -- ----------------------------
 -- Records of gen_template
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mod_log
+-- ----------------------------
+DROP TABLE IF EXISTS `mod_log`;
+CREATE TABLE `mod_log` (
+  `id` varchar(64) NOT NULL COMMENT '编号',
+  `log_type` varchar(1) DEFAULT NULL COMMENT '记录类型[i,w,e]',
+  `module_type` varchar(2) DEFAULT NULL COMMENT '模块类型',
+  `entity_id` varchar(50) DEFAULT NULL COMMENT '实体编号',
+  `bis_id` varchar(50) DEFAULT NULL COMMENT '业务编号',
+  `notes` varchar(100) DEFAULT NULL COMMENT '摘要',
+  `msg` varchar(1000) DEFAULT NULL COMMENT '信息',
+  `create_time` datetime DEFAULT NULL COMMENT '生成时间',
+  `del_flag` varchar(1) DEFAULT NULL COMMENT '是否处理',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块日志';
+
+-- ----------------------------
+-- Records of mod_log
 -- ----------------------------
 
 -- ----------------------------
@@ -386,6 +421,10 @@ CREATE TABLE `sys_log` (
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES ('3430696289894188982b13bfdb3f06b0', '1', '我的面板-个人信息-个人信息', '1', '2016-11-04 10:19:15', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', '/ssmBase/a/sys/user/info', 'GET', '', '');
+INSERT INTO `sys_log` VALUES ('35961ba66c224a5e813af7083a97342c', '1', '代码生成-生成示例-主子表', '1', '2016-11-04 10:19:28', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', '/ssmBase/a/test/testDataMain', 'GET', '', '');
+INSERT INTO `sys_log` VALUES ('aeae1d8446924c239bc43adce5b61e80', '1', '系统登录', '1', '2016-11-04 10:19:14', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', '/ssmBase/a', 'GET', 0x6C6F67696E3D, '');
+INSERT INTO `sys_log` VALUES ('b70983bff9064511bb275063f3bb06d1', '1', '代码生成-代码生成-业务表配置', '1', '2016-11-04 10:19:18', '0:0:0:0:0:0:0:1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36', '/ssmBase/a/gen/genTable', 'GET', '', '');
 
 -- ----------------------------
 -- Table structure for sys_mdict
@@ -925,7 +964,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', '', '', '0:0:0:0:0:0:0:1', '2016-11-03 23:07:43', '1', '1', '2013-05-27 08:00:00', '1', '2016-09-04 18:17:06', '最高管理员', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', '', '', '0:0:0:0:0:0:0:1', '2016-11-04 10:19:14', '1', '1', '2013-05-27 08:00:00', '1', '2016-09-04 18:17:06', '最高管理员', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
