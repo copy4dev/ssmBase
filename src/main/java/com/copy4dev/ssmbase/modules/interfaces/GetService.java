@@ -54,5 +54,15 @@ public class GetService extends BaseController {
 		}
 		return null;
 	}
+	
+	
+	
+	//http://localhost:8080/ssmBase/f/service2
+	@RequestMapping(value = "${frontPath}/service2", method = RequestMethod.GET)
+	public String service2(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return "/ssmBase/WEB-INF/index.jsp";
+	}
+	
+	
 
 }

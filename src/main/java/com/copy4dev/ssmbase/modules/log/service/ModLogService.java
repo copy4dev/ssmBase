@@ -63,9 +63,9 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 	/**
 	 * 写入日志
 	 * @param logType 记录类型 [i=信息;w=警告;e=错误]
-	 * @param moduleType 模块类型[1=qq账号;2=qq空间]
-	 * @param entityId 实体编号
-	 * @param bisId 业务编号
+	 * @param moduleType 模块类型[1=xxx;2=xxx;...]
+	 * @param entityId 实体编号[xxx]
+	 * @param bisId 业务编号[xxx]
 	 * @param notes 摘要
 	 * @param msg 信息
 	 */
