@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cn.chinaskin.modules.log.dao.ModLogDao">
+<mapper namespace="com.copy4dev.ssmbase.modules.log.dao.ModLogDao">
     
 	<sql id="modLogColumns">
 		a.id AS "id",

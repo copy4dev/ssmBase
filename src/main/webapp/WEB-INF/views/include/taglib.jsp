@@ -6,6 +6,10 @@
 <%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
 <%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 <%@ taglib prefix="act" tagdir="/WEB-INF/tags/act" %>
+
+<!-- 管理端 -->
 <c:set var="ctx" value="${pageContext.request.contextPath}${fns:getAdminPath()}"/>
+<!-- 普通端 -->
+<c:set var="ctxf" value="${pageContext.request.contextPath}${fns:getFrontPath()}"/>
+
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
-<c:set var="ctxPage" value="${pageContext.request.contextPath}/page"/>

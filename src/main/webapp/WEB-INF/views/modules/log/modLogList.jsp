@@ -25,7 +25,7 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>记录类型[i,w,e]：</label>
+			<li><label>记录类型：</label>
 				<form:input path="logType" htmlEscape="false" maxlength="1" class="input-medium"/>
 			</li>
 			<li><label>模块类型：</label>
@@ -85,7 +85,7 @@
 					<fmt:formatDate value="${modLog.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
-					${fns:getDictLabel(modLog.delFlag, 'del_flag', '')}
+					${fns:getDictLabel(modLog.delFlag, 'yes_no', '')}
 				</td>
 				<shiro:hasPermission name="log:modLog:edit"><td>
     				<a href="${ctx}/log/modLog/form?id=${modLog.id}">修改</a>
