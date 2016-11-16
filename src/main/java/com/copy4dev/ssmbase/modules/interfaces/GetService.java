@@ -37,6 +37,8 @@ public class GetService extends BaseController {
 		
 		Page<ModLog> page = modLogService.findPage(new Page<ModLog>(request, response), modLog); 
 		model.addAttribute("page", page);
+		System.out.println(page.getPageSize());
+		
 	
 //		System.out.println(	modLogService.findList(new ModLog()).size());
 		
