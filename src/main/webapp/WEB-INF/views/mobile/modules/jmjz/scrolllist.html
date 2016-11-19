@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery手机端上拉刷新下拉加载更多页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/pullToRefresh.css" />
+
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/pullToRefresh.js"></script>
+<script type="text/javascript" src="js/colorful.js"></script>
+
+<style type="text/css" media="all">
+body, html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	font-family: Arial, Microsoft YaHei;
+	color: #111;
+}
+
+li {
+	/*border-bottom: 1px #CCC solid;*/
+	text-align: center;
+	line-height: 80px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="wrapper">
+	<ul>
+		<li>
+
+			<a href="cdetails2.html" style="text-decoration:none;">
+				<section data-type="jpeg" style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgb(225, 225, 225); box-sizing: border-box;margin-right:15px;margin-left:15px;margin-top:8px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;">
+					<section style="display: inline-block; margin-left:10px;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, 微软雅黑, Arial, sans-serif;  white-space: normal; vertical-align: top; width: 35%;  box-sizing: border-box; background: rgba(255, 255, 255, 0.4)">
+						<section style="position: static; box-sizing: border-box;">
+							<section style=" text-align: center; margin-top: 10px; margin-bottom: 10px; position: static; box-sizing: border-box;">
+								<img src="http://image.135editor.com/files/users/135/1351625/201610/TcME0tg4_NCRN.jpg" width="70px" height="70px" border="0" mapurl="" title="" alt="" style="vertical-align: middle;"/>
+							</section>
+						</section>
+					</section>
+					<section style="display: inline-block;  vertical-align: top; width: 60%; margin-top: 16px; box-sizing: border-box; ">
+						<section style="margin-left:10px;color: rgb(202, 198, 198);  box-sizing: border-box;">
+							<p >
+								<strong><span style="font-size: 15px; color: #000000;">广州轩逸设计工程有限公司</span></strong>
+							</p>
+						</section>
+						<section style="margin-left:10px; padding-top: 4px;box-sizing: border-box;">
+							<span style="font-size: 12px; color: #244061;">口碑值：</span>
+							<span style="font-size: 12px; color: #E36C09;">6314</span>
+							<span style="font-size: 12px; color: #244061;"> &nbsp; 好评率：</span>
+							<span style="font-size: 12px; color: #E36C09;">97%</span>
+						</section>
+						<section style="margin-left:10px;padding-top: 4px;box-sizing: border-box;">
+							<p style="white-space: normal;">
+								<span style=";font-size: 12px;;color: #953734; ">21254人咨询浏览过</span>
+							</p>
+						</section>
+					</section>
+				</section>
+			</a>
+
+		</li>
+		<li>row 9</li>
+
+	</ul>
+</div>
+
+<script type="text/javascript">
+for (var i = 0; i < document.querySelectorAll("#wrapper ul li").length; i++) {
+	document.querySelectorAll("#wrapper ul li")[i].colorfulBg();
+}
+refresher.init({
+	id: "wrapper",//<------------------------------------------------------------------------------------┐
+	pullDownAction: Refresh,
+	pullUpAction: Load
+});
+var generatedCount = 0;
+function Refresh() {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		var el, li, i;
+		el = document.querySelector("#wrapper ul");
+		el.innerHTML = '';
+		for (i = 0; i < 11; i++) {
+			li = document.createElement('li');
+			li.appendChild(document.createTextNode('async row ' + (++generatedCount)));
+			el.insertBefore(li, el.childNodes[0]);
+		}
+		wrapper.refresh();/****remember to refresh after  action completed！ ---yourId.refresh(); ----| ****/
+		for (var i = 0; i < document.querySelectorAll("#wrapper ul li").length; i++) {
+			document.querySelectorAll("#wrapper ul li")[i].colorfulBg();
+		}
+	}, 1000);
+
+}
+
+function Load() {
+	setTimeout(function () {// <-- Simulate network congestion, remove setTimeout from production!
+		var el, li, i;
+		el = document.querySelector("#wrapper ul");
+		for (i = 0; i < 10; i++) {
+			li = document.createElement('li');
+			li.appendChild(document.createTextNode('async row ' + (++generatedCount)));
+			el.appendChild(li, el.childNodes[0]);
+		}
+		wrapper.refresh();/****remember to refresh after action completed！！！   ---id.refresh(); --- ****/
+		for (var i = 0; i < document.querySelectorAll("#wrapper ul li").length; i++) {
+			document.querySelectorAll("#wrapper ul li")[i].colorfulBg();
+		}
+	}, 1000);
+}
+</script>
+
+</body>
+</html>

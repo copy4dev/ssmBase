@@ -93,7 +93,9 @@
 		</mvc:interceptor>
 		<!-- 手机视图拦截器 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
+<!-- 			<mvc:mapping path="/**" /> -->
+            <mvc:mapping path="${adminPath}/**" />
+            <mvc:exclude-mapping path="${frontPath}/**"/>
 			<bean class="com.copy4dev.ssmbase.modules.sys.interceptor.MobileInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -1,0 +1,163 @@
+
+/* Keep everything the same */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: bold 14px Arial, sans-serif;
+}
+
+/* So the background is not so plain */
+html {
+  height: 100%;
+  background: white;
+  background: radial-gradient(circle, #fff 20%, #ccc);
+  background-size: cover;
+}
+
+.container {
+  width:100%;
+  height:auto;
+  display: block;
+}
+
+.row {
+  width:100%;
+  height:auto;
+}
+
+.btn {
+  float: left;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  background: white;
+  border-radius: 1px;
+  box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  color: #888;
+
+  text-align: center;
+
+  /* so nobody selects the inside text on button */
+  user-select: none;
+
+  /* Smoothing out hover using css3 transitions, if not, the pressed button effect looks a bit hard */
+  transition: all 0.2s ease;
+}
+
+.btn-medium {
+  line-height: 45px;
+  width: 25%;
+  height: 45px;
+  font-size: 14px;
+}
+
+/*==========  Different button styles  ==========*/
+
+.info1 {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+.info1:hover {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+/* Imitate a pressed effect for buttons */
+.info1:active {
+  top: 4px;
+}
+
+.info2 {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+.info2:hover {
+  background: rgba(255,255,255,1);
+  color: white;
+}
+
+/* Imitate a pressed effect for buttons */
+.info2:active {
+  top: 4px;
+}
+
+.info22 {
+  background: rgba(255,255,255,1);
+  color: #e17319;
+}
+
+.info22:hover {
+  background: rgba(255,255,255,1);
+  color: e17319;
+}
+
+/* Imitate a pressed effect for buttons */
+.info22:active {
+  top: 4px;
+  color: e17319;
+}
+
+.info3 {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+.info3:hover {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+/* Imitate a pressed effect for buttons */
+.info3:active {
+  top: 4px;
+}
+
+.info33 {
+  background: rgba(255,255,255,1);
+  color: #e17319;
+}
+
+.info33:hover {
+  background: rgba(255,255,255,1);
+  color: #e17319;
+}
+
+/* Imitate a pressed effect for buttons */
+.info33:active {
+  top: 4px;
+  color: #e17319;
+}
+
+.info4 {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+.info4:hover {
+  background: rgba(255,255,255,1);
+  color: #486684;
+}
+
+/* Imitate a pressed effect for buttons */
+.info4:active {
+  top: 4px;
+}
+
+.info44 {
+  background: rgba(255,255,255,1);
+  color: #e17319;
+}
+
+.info44:hover {
+  background: rgba(255,255,255,1);
+  color: #e17319;
+}
+
+/* Imitate a pressed effect for buttons */
+.info44:active {
+  top: 4px;
+  color: #e17319;
+}

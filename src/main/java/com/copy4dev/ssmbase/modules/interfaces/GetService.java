@@ -43,7 +43,18 @@ public class GetService extends BaseController {
 //		System.out.println(	modLogService.findList(new ModLog()).size());
 		
 		//mobile/modules/模块名/jsp文件名
-		String s = "mobile/modules/test/index";
+		String s = "";
+		int key=1;
+		switch (key) {
+		case 1:
+			s = "mobile/modules/jmjz/clist2";
+			break;
+
+		default:
+			s = "mobile/modules/test/index";
+			break;
+		}
+		
 		logger.debug("地址跳转：" + s);
 		return s;
 	}

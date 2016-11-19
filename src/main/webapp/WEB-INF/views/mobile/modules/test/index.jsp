@@ -13,7 +13,7 @@
 </style>
 
 <script src="${ctxStatic}/mobile/test/js/test.js"></script>
-<script src="${ctxStatic}/mobile/test/jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<%-- <script src="${ctxStatic}/mobile/test/jquery/jquery-3.1.1.js" type="text/javascript"></script> --%>
 <script type="text/javascript">
 	/*js代码*/
 	
